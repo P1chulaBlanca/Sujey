@@ -2,17 +2,17 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Corazón para Sujeysita</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para Sujeysita 💖</title>
   <style>
     body {
+      background: #fff0f5;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       height: 100vh;
       margin: 0;
-      background: #ffe6ec;
       font-family: 'Arial', sans-serif;
     }
 
@@ -24,6 +24,7 @@
       transform: rotate(-45deg);
       cursor: pointer;
       transition: transform 0.3s ease;
+      animation: pulse 2s infinite;
     }
 
     .heart::before,
@@ -46,9 +47,14 @@
       top: 0;
     }
 
+    @keyframes pulse {
+      0%, 100% { transform: scale(1) rotate(-45deg); }
+      50% { transform: scale(1.1) rotate(-45deg); }
+    }
+
     .message {
       margin-top: 20px;
-      font-size: 24px;
+      font-size: 26px;
       color: #d60047;
       display: none;
       animation: fadeIn 1s ease-in-out forwards;
@@ -58,15 +64,43 @@
       0% { opacity: 0; transform: scale(0.8); }
       100% { opacity: 1; transform: scale(1); }
     }
+
+    .floating-heart {
+      position: absolute;
+      color: red;
+      font-size: 24px;
+      animation: floatUp 2s ease-out forwards;
+    }
+
+    @keyframes floatUp {
+      0% { opacity: 1; bottom: 0; }
+      100% { opacity: 0; bottom: 150px; }
+    }
   </style>
 </head>
 <body>
   <div class="heart" onclick="showMessage()"></div>
-  <div class="message" id="loveMessage">Te amo Sujeysita hermosa</div>
+  <div class="message" id="loveMessage">Te amo Sujeysita hermosa 💖</div>
+
+  <audio id="popSound" src="https://www.soundjay.com/button/sounds/button-16.mp3" preload="auto"></audio>
 
   <script>
     function showMessage() {
-      document.getElementById('loveMessage').style.display = 'block';
+      const message = document.getElementById('loveMessage');
+      const sound = document.getElementById('popSound');
+
+      message.style.display = 'block';
+      sound.play();
+
+      const floating = document.createElement('div');
+      floating.className = 'floating-heart';
+      floating.style.left = Math.random() * 100 + "px";
+      floating.innerHTML = "❤️";
+      document.body.appendChild(floating);
+
+      setTimeout(() => {
+        floating.remove();
+      }, 2000);
     }
   </script>
 </body>
