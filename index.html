@@ -1,14 +1,73 @@
-<div class="bgoverlay">
-  <div class="container">
-    <span class="ico">
-      <span class="ico2"></span>
-      <span class="title">Click Me</span>
-    </span>
-    <div class="endtext">
-      <span class="close" title="Close"><i class="fa fa-times"></i></span>  
-      <h1>TE AMO AMOR MIO</h1>
-      <h2>~</h2>
-      <h3>De tú Novio Emerson</h3>
-    </div>
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Corazón para Sujeysita</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: #ffe6ec;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .heart {
+      width: 100px;
+      height: 90px;
+      background: red;
+      position: relative;
+      transform: rotate(-45deg);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      width: 100px;
+      height: 90px;
+      background: red;
+      border-radius: 50%;
+      position: absolute;
+    }
+
+    .heart::before {
+      top: -50px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 50px;
+      top: 0;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 24px;
+      color: #d60047;
+      display: none;
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="heart" onclick="showMessage()"></div>
+  <div class="message" id="loveMessage">Te amo Sujeysita hermosa</div>
+
+  <script>
+    function showMessage() {
+      document.getElementById('loveMessage').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
